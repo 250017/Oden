@@ -14,11 +14,17 @@ void TestScene::Initialize()
 {
 	hTitlePic_ = Image::Load("title2.png");
 	assert(hTitlePic_ >= 0);
+
+
+	transform_.position_ = { 200.0f,300.0f,0.0f };
+	transform_.rotate_ = { 0.0f,0.0f,0.0f };
+	transform_.scale_ = { 1.5f,1.5f,1.0f };
 }
 
 //更新
 void TestScene::Update()
 {
+	printf("Update\n");
 	if (Input::IsKeyDown(DIK_SPACE))
 	{
 		//見つからない場合はnullptrを返すので、nullptrでないことを確認してから使う
@@ -31,14 +37,9 @@ void TestScene::Update()
 //描画
 void TestScene::Draw()
 {
-	transform_.position_ = { 400.0f, 300.0f, 0.0f };//画像の位置を変更
-	transform_.rotate_ = { 0.0f, 0.0f, 0.0f };//画像の向きを変更
-
-	transform_.scale_ = { 1.5f, 1.5f, 1.0f };//画像の大きさを変更
-	Image::SetTransform(hTitlePic_, transform_);//画像の行列をこのオブジェクトの行列にする
+	//Image::SetTransform(hTitlePic_, transform_);//画像の行列をこのオブジェクトの行列にする
 	Image::Draw(hTitlePic_);//画像を描画
 }
-
 //開放
 void TestScene::Release()
 {
