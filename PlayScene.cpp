@@ -1,24 +1,22 @@
 #include "PlayScene.h"
 #include "Engine\\Model.h"
+#include "Player.h"
 
 PlayScene::PlayScene(GameObject* parent)
-	:GameObject(parent, "PlayScene"), hModel_(-1), hModel_2(-1)
+	:GameObject(parent, "PlayScene"), hModel_(-1)
 {
 }
 
 void PlayScene::Initialize()
 {
 	hModel_ = Model::Load("Oden.fbx");
-	hModel_2 = Model::Load("test.fbx");
 	assert(hModel_ >= 0);
-	assert(hModel_2 >= 0);
+	Instantiate<Player>(this);//Playerのインスタンス＝プレイヤーオブジェクトを作る
 }
 
 void PlayScene::Update()
 {
 	static float time = 0.0f;
-
-
 
 	ot_.position_ = { 0.0f, 0.0f, 10.0f };
 	ot_.scale_ = { 0.5f, 0.5f, 0.5f };
@@ -38,7 +36,6 @@ void PlayScene::Draw()
 {
 	//Transform ot;//おでん用のトランスフォーム
 	Model::SetTransform(hModel_, ot_);
-	Model::SetTransform(hModel_2, ot_);
 	Model::Draw(hModel_);
 	//Model::Draw(hModel_2);
 }
