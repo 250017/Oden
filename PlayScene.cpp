@@ -3,7 +3,7 @@
 #include "Player.h"
 
 PlayScene::PlayScene(GameObject* parent)
-	:GameObject(parent, "PlayScene"), hModel_(-1)
+	:GameObject(parent, "Player"), hModel_(-1)
 {
 }
 
