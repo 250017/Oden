@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Engine\\Model.h"
 #include "Engine\\Input.h"
+#include "Bullet.h"
 
 
 Player::Player(GameObject* parent)
@@ -11,12 +12,13 @@ Player::Player(GameObject* parent)
 
 void Player::Initialize()
 {
-	hModel_ = Model::Load("Player.fbx");
+	//hModel_ = Model::Load("Player.fbx");
+	hModel_ = Model::Load("Oden.fbx");
 	assert(hModel_ >= 0);
 
-	tr_.position_ = { 0.0f,4.0f,0.0f };
-	tr_.scale_ = { 1.0f,1.0f,1.0f };
-	tr_.rotate_ = { 0.0f,0.0f,0.0f };
+	transform_.position_ = { 0.0f,-4.0f,0.0f };
+	transform_.scale_ = { 1.0f,1.0f,1.0f };
+	transform_.rotate_ = { 0.0f,0.0f,0.0f };
 }
 
 void Player::Update()
@@ -24,16 +26,28 @@ void Player::Update()
 	if (Input::IsKey(DIK_LEFT) || Input::IsKey(DIK_A))
 	{
 		//左に移動
-		tr_.position_.x += -1.0f;
+		transform_.position_.x += -1.0f;
 	}
 	if (Input::IsKey(DIK_RIGHT) || Input::IsKey(DIK_D))
 	{
 		//右に移動
-		tr_.position_.x += 1.0f;
+		transform_.position_.x += 1.0f;
 	}
-	if (Input::IsKey(DIK_SPACE))
+	if (Input::IsKey(DIK_UP) || Input::IsKey(DIK_W))
 	{
+		//上に移動
+		transform_.position_.y += 1.0f;
+	}
+	if (Input::IsKey(DIK_DOWN) || Input::IsKey(DIK_S))
+	{
+		//下に移動
+		transform_.position_.y += -1.0f;
+	}
 
+	if (Input::IsKeyDown(DIK_SPACE))
+	{
+		Bullet *pBullet = Instantiate<Bullet>(this->GetParent());
+		pBullet->SetPosition(transform_.position_);
 	}
 }
 
@@ -44,7 +58,7 @@ void Player::Draw()
 		return;
 	}
 
-	Model::SetTransform(hModel_, tr_);
+	Model::SetTransform(hModel_, transform_);
 	Model::Draw(hModel_);
 }
 

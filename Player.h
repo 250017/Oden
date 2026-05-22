@@ -16,7 +16,6 @@ public:
 	void Release() override;
 private:
 	int hModel_; //モデルのハンドル
-	Transform tr_; //トランスフォーム
 
 
 
