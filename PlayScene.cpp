@@ -36,7 +36,7 @@ void PlayScene::Update()
 
 	if (spawnTimer / 60 > 5) {
 		Enemy* enemy = Instantiate<Enemy>(this);
-		enemy->SetPosition(rand() % 20, rand() % 50 - 40, rand() % 100);
+		enemy->SetPosition(rand() % 30 - 15, rand() % 16 - 8, rand() % 100);
 		spawnTimer = 0;
 	}
 	if (FindObject("Enemy") == nullptr) {
