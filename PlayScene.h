@@ -23,5 +23,7 @@ private:
 	int hModel_; //モデルのハンドル
 	int hModel_2;
 	int time_;//時間
+	int spawnTimer;
 	Transform ot_;//おでん用のトランスフォーム
+	XMFLOAT3 CameraTargetPos;
 };

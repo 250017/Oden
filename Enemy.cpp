@@ -23,7 +23,6 @@ void Enemy::Initialize()
 
 void Enemy::Update()
 {
-	static float time = 0.0f;
 	time += 0.025f;
 	transform_.position_.x = 6.0f * sin(time);
 }

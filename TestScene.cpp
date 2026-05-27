@@ -12,7 +12,7 @@ TestScene::TestScene(GameObject * parent)
 //‰Šú‰»
 void TestScene::Initialize()
 {
-	hTitlePic_ = Image::Load("title2.png");
+	hTitlePic_ = Image::Load("title.png");
 	assert(hTitlePic_ >= 0);
 
 

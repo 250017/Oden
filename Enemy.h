@@ -12,6 +12,8 @@ public:
     void OnCollision(GameObject* pTarget) override;
 private:
     int hModel_;//モデルのハンドル
+    float time = 0.0f;
+
 
 };
 

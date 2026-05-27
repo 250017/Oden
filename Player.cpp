@@ -16,7 +16,7 @@ void Player::Initialize()
 	hModel_ = Model::Load("Oden.fbx");
 	assert(hModel_ >= 0);
 
-	transform_.position_ = { 0.0f,-4.0f,0.0f };
+	transform_.position_ = { 0.0f,0.0f,0.0f };
 	transform_.scale_ = { 1.0f,1.0f,1.0f };
 	transform_.rotate_ = { 0.0f,0.0f,0.0f };
 }
@@ -48,6 +48,18 @@ void Player::Update()
 	{
 		Bullet *pBullet = Instantiate<Bullet>(this->GetParent());
 		pBullet->SetPosition(transform_.position_);
+	}
+	if (transform_.position_.x > 15) {
+		transform_.position_.x = 15;
+	}
+	if (transform_.position_.x < -15) {
+		transform_.position_.x = -15;
+	}
+	if (transform_.position_.y > 8) {
+		transform_.position_.y = 8;
+	}
+	if (transform_.position_.y < -8) {
+		transform_.position_.y = -8;
 	}
 }
 
