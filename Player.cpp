@@ -13,12 +13,12 @@ Player::Player(GameObject* parent)
 void Player::Initialize()
 {
 	//hModel_ = Model::Load("Player.fbx");
-	hModel_ = Model::Load("cc space-ship model/Ship_FBX_Recommended.fbx");
+	hModel_ = Model::Load("Player.fbx");
 	assert(hModel_ >= 0);
 
 	transform_.position_ = { 0.0f,0.0f,0.0f };
-	transform_.scale_ = { 0.005f, 0.005f, 0.005f };
-	transform_.rotate_ = { 0.0f,0.0f,0.0f };
+	transform_.scale_ = { 1.0f, 1.0f, 1.0f };
+	transform_.rotate_ = { 0.0f,180.0f,0.0f };
 }
 
 void Player::Update()

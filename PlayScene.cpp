@@ -7,6 +7,12 @@
 #include "Engine/Camera.h"
 #include "Engine/Input.h"
 
+
+namespace
+{
+	//敵を何体召喚したか
+	int enemyCount;
+}
 PlayScene::PlayScene(GameObject* parent)
 	:GameObject(parent, "Player"), hModel_(-1)
 {
@@ -20,6 +26,8 @@ void PlayScene::Initialize()
 	Enemy* enemy = Instantiate<Enemy>(this);
 	Camera::SetPosition(XMFLOAT3(0, 0, -25));
 	CameraTargetPos = { 0, 0, 50 };
+	enemyCount = 0;
+
 
 	//Enemy* e1 = Instantiate<Enemy>(this);
 	//e1->SetPosition(0, 0, 30);
@@ -34,10 +42,11 @@ void PlayScene::Update()
 	spawnTimer++;
 	Camera::SetTarget(CameraTargetPos);
 
-	if (spawnTimer / 60 > 5) {
+	if (spawnTimer / 60 > 5 && enemyCount < 5) {
 		Enemy* enemy = Instantiate<Enemy>(this);
-		enemy->SetPosition(rand() % 30 - 15, rand() % 16 - 8, rand() % 100);
+		enemy->SetPosition(rand() % 30 - 15, rand() % 16 - 8, rand() % 40);
 		spawnTimer = 0;
+		enemyCount += 1;
 	}
 	if (FindObject("Enemy") == nullptr) {
 		SceneManager* pSceneManager = (SceneManager*)(this->GetParent());

@@ -12,7 +12,7 @@ Bullet::Bullet(GameObject* parent)
 void Bullet::Initialize()
 {
 	//hModel_ = Model::Load("Bullet.fbx");
-	hModel_ = Model::Load("Oden.fbx");
+	hModel_ = Model::Load("Bullet.fbx");
 	assert(hModel_ >= 0);
 	transform_.scale_ = { 0.25f, 0.25f, 0.25f };
 	//Player* player = (Player*)FindObject("Player");
