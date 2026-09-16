@@ -19,6 +19,8 @@ public:
 
 	//開放
 	void Release() override;
+
+	static int GetScore() { return score_; }
 private:
 	int hModel_; //モデルのハンドル
 	int hModel_2;
@@ -26,4 +28,7 @@ private:
 	int spawnTimer;
 	Transform ot_;//おでん用のトランスフォーム
 	XMFLOAT3 CameraTargetPos;
+
+	//スコア
+	static int score_;
 };

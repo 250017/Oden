@@ -12,11 +12,11 @@ TestScene::TestScene(GameObject * parent)
 //初期化
 void TestScene::Initialize()
 {
-	hTitlePic_ = Image::Load("title.png");
+	hTitlePic_ = Image::Load("OdenTitle.png");
 	assert(hTitlePic_ >= 0);
 
 
-	transform_.position_ = { 200.0f,300.0f,0.0f };
+	transform_.position_ = { 0.0f,0.0f,0.0f };
 	transform_.rotate_ = { 0.0f,0.0f,0.0f };
 	transform_.scale_ = { 1.5f,1.5f,1.0f };
 }
@@ -37,7 +37,7 @@ void TestScene::Update()
 //描画
 void TestScene::Draw()
 {
-	//Image::SetTransform(hTitlePic_, transform_);//画像の行列をこのオブジェクトの行列にする
+	Image::SetTransform(hTitlePic_, transform_);//画像の行列をこのオブジェクトの行列にする
 	Image::Draw(hTitlePic_);//画像を描画
 }
 //開放

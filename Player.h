@@ -14,6 +14,8 @@ public:
 	void Draw() override;
 	//解放
 	void Release() override;
+	
+	void OnCollision(GameObject* pTarget) override;
 private:
 	int hModel_; //モデルのハンドル
 

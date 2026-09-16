@@ -1,17 +1,19 @@
 #pragma once
 #include "Engine\\GameObject.h"
-class Clear :
+class Egg :
     public GameObject
 {
 public:
-    Clear(GameObject* parent);
+    Egg(GameObject* parent);
     void Initialize() override;
     void Update() override;
     void Draw() override;
     void Release() override;
+    void OnCollision(GameObject* pTarget) override;
 private:
-    int hClearPic_;//モデルのハンドル
-    int timer;
-    int score_;
+    int hModel_;//モデルのハンドル
+    float time = 0.0f;
+
+
 };
 

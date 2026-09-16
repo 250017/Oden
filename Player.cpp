@@ -2,6 +2,7 @@
 #include "Engine\\Model.h"
 #include "Engine\\Input.h"
 #include "Bullet.h"
+#include "Egg.h"
 
 
 Player::Player(GameObject* parent)
@@ -19,6 +20,13 @@ void Player::Initialize()
 	transform_.position_ = { 0.0f,0.0f,0.0f };
 	transform_.scale_ = { 1.0f, 1.0f, 1.0f };
 	transform_.rotate_ = { 0.0f,180.0f,0.0f };
+
+	// プレイヤー用の球形コライダーを生成する
+	SphereCollider* collider =
+		new SphereCollider(XMFLOAT3(0.0f, 0.0f, 0.0f), 1.0f);
+
+	// プレイヤーにコライダーを追加する
+	AddCollider(collider);
 }
 
 void Player::Update()
@@ -26,22 +34,22 @@ void Player::Update()
 	if (Input::IsKey(DIK_LEFT) || Input::IsKey(DIK_A))
 	{
 		//左に移動
-		transform_.position_.x += -0.5f;
+		transform_.position_.x += -0.2f;
 	}
 	if (Input::IsKey(DIK_RIGHT) || Input::IsKey(DIK_D))
 	{
 		//右に移動
-		transform_.position_.x += 0.5f;
+		transform_.position_.x += 0.2f;
 	}
 	if (Input::IsKey(DIK_UP) || Input::IsKey(DIK_W))
 	{
 		//上に移動
-		transform_.position_.y += 0.5f;
+		transform_.position_.y += 0.2f;
 	}
 	if (Input::IsKey(DIK_DOWN) || Input::IsKey(DIK_S))
 	{
 		//下に移動
-		transform_.position_.y += -0.5f;
+		transform_.position_.y += -0.2f;
 	}
 
 	if (Input::IsKeyDown(DIK_SPACE))
@@ -49,6 +57,7 @@ void Player::Update()
 		Bullet *pBullet = Instantiate<Bullet>(this->GetParent());
 		pBullet->SetPosition(transform_.position_);
 	}
+	// 画面外に出ないように制限
 	if (transform_.position_.x > 15) {
 		transform_.position_.x = 15;
 	}
@@ -76,4 +85,13 @@ void Player::Draw()
 
 void Player::Release()
 {
+}
+
+void Player::OnCollision(GameObject* pTarget)
+{
+	if (pTarget->GetObjectName() == "Egg")
+	{
+		pTarget->KillMe();
+		KillMe();
+	}
 }
